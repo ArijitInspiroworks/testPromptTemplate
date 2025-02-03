@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersion>2</activeVersion>
+    <developerName>Account_Summary_Prompt</developerName>
+    <masterLabel>Account Summary Prompt</masterLabel>
+    <relatedEntity>Account</relatedEntity>
+    <relatedField>Account.Account_Summary__c</relatedField>
+    <templateVersions>
+        <content>You are a Sales Representative at {!$Organization.Name} and you know all details about account object, provide a detailed summary.
+
+Instructions 
+&quot;&quot;&quot; 
+Limit the Summary within 500 words.
+Provide a detailed overview of a given record {!$RecordSnapshot:Account.Snapshot}.
+Please provide a response that is both friendly and professional in tone.
+Do not Include record ID in the summary. 
+&quot;&quot;&quot;
+
+Now create a detailed summary of account.
+</content>
+        <inputs>
+            <apiName>RelatedEntity</apiName>
+            <definition>SOBJECT://Account</definition>
+            <referenceName>Input:Account</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:Account.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:Account</referenceName>
+        </templateDataProviders>
+        <versionNumber>2</versionNumber>
+    </templateVersions>
+    <type>einstein_gpt__fieldCompletion</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>
