@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <developerName>Test_AASW_prompt</developerName>
+    <masterLabel>Test_AASW_prompt</masterLabel>
+    <templateVersions>
+        <content>Extract and summarize all relevant information about AASW using . Present the content comprehensively and clearly, ensuring the information is tailored to the context provided. Avoid including field labels, technical identifiers, or metadata in the response. Ensure the answer is well-structured and easy to understand.
+
+Instructions 
+&apos;&apos;&apos;
+- Provide a detailed answer to the user query {!$Input:user_input} using all available data.
+- Use simple, clear, and professional language. Organize the response logically to enhance readability, such as through paragraphs, bullet points, or headings if appropriate.
+- Use specific input given for the user query {!$Input:user_input} and answer.
+&apos;&apos;&apos;
+Now give the final result. 
+</content>
+        <inputs>
+            <apiName>user_input</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>user_input</masterLabel>
+            <referenceName>Input:user_input</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT35Turbo</primaryModel>
+        <status>Draft</status>
+        <versionNumber>1</versionNumber>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>
